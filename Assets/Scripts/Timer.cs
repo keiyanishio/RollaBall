@@ -7,6 +7,11 @@ public class Timer : MonoBehaviour
     [SerializeField] TextMeshProUGUI timerText;
     [SerializeField] float countDown;
 
+    public GameOver GameOverScreen;
+    public void GameOver()
+    {
+        GameOverScreen.Setup();
+    }
     // Update is called once per frame
     void Update()
     {
@@ -14,10 +19,16 @@ public class Timer : MonoBehaviour
         {
             countDown -= Time.deltaTime;
         }
-        else if (countDown < 0)
+
+        if (countDown < 5 && countDown > 1)
+        {
+            timerText.color = Color.red;
+        }
+
+        if (countDown < 0)
         {
             countDown = 0;
-            timerText.color = Color.red;
+            GameOver();
         }
      
         int seconds = Mathf.FloorToInt(countDown % 60);
