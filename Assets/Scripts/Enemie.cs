@@ -19,7 +19,7 @@ public class Enemie : MonoBehaviour
 
     private bool seePlayer;
 
-    public float Damage;
+    public int Damage;
     public float cooldown;
 
     private bool CanAttack = true;

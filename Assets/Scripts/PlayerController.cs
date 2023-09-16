@@ -7,8 +7,8 @@ using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
-    public float Health;
-    [SerializeField] private float nowHealth;
+    public int Health;
+    [SerializeField] private int nowHealth;
 
     public float threshold;
 
@@ -17,10 +17,12 @@ public class PlayerController : MonoBehaviour
 
     public float speed = 0;
     public TextMeshProUGUI countText;
-    
+    public TextMeshProUGUI lifeText;
+
 
     private Rigidbody rb;
     private int count;
+    private int life;
     private float movementX;
     private float movementY;
 
@@ -43,9 +45,10 @@ public class PlayerController : MonoBehaviour
         nowHealth = Health;
         rb = GetComponent<Rigidbody>();
         count = 0;
+        life = 5;
 
         SetCountText();
-        
+        SetLifeText();
     }
 
     void OnMove(InputValue movementValue)
@@ -64,6 +67,22 @@ public class PlayerController : MonoBehaviour
         {
             
             YouWin();
+        }
+    }
+
+    void SetLifeText()
+    {
+        lifeText.text = "Life: " + life.ToString();
+
+        if(life <= 2)
+        {
+            lifeText.color = Color.red;
+        }
+
+        if (life == 0)
+        {
+
+            GameOver();
         }
     }
 
@@ -91,9 +110,11 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    public void TakeDamage(float Damage)
+    public void TakeDamage(int Damage)
     {
         nowHealth -= Damage;
+        life -= 1;
+        SetLifeText();
 
         if (nowHealth <= 0)
         {

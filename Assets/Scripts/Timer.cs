@@ -20,7 +20,7 @@ public class Timer : MonoBehaviour
             countDown -= Time.deltaTime;
         }
 
-        if (countDown < 5 && countDown > 1)
+        if (countDown < 11 && countDown > 1)
         {
             timerText.color = Color.red;
         }
