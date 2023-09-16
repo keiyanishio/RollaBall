@@ -7,8 +7,12 @@ using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
+    public float Health;
+    [SerializeField] private float nowHealth;
 
-    //public GameOver GameOverScreen;
+    public float threshold;
+
+    public GameOver GameOverScreen;
     public YouWin YouWinScreen;
 
     public float speed = 0;
@@ -20,19 +24,23 @@ public class PlayerController : MonoBehaviour
     private float movementX;
     private float movementY;
 
-    /*public void GameOver()
-    {
-        GameOverScreen.Setup(count);
-    }*/
+    
 
     public void YouWin()
     {
         YouWinScreen.Setup(count);
     }
 
+    public void GameOver()
+    {
+        GameOverScreen.Setup();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
+
+        nowHealth = Health;
         rb = GetComponent<Rigidbody>();
         count = 0;
 
@@ -61,6 +69,11 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (transform.position.y < threshold)
+        {
+            transform.position = new Vector3(0.0f, 0.5f, 0.0f);
+        }
+
         Vector3 movement = new Vector3(movementX, 0.0f, movementY);
 
         rb.AddForce(movement * speed);
@@ -76,6 +89,16 @@ public class PlayerController : MonoBehaviour
             SetCountText();
         }
         
+    }
+
+    public void TakeDamage(float Damage)
+    {
+        nowHealth -= Damage;
+
+        if (nowHealth <= 0)
+        {
+            GameOver();
+        }
     }
 
 }
