@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
     {
         countText.text = "Score: " + count.ToString();
 
-        if(count >= 12)
+        if(count >= 16)
         {
             audioManager.PlaySFX(audioManager.win);
             played = 1;
