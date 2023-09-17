@@ -2,7 +2,7 @@
 
 Aluno: Keiya Nishio
 
-Link do Jogo: [https://github.com/keiyanishio/RollaBall](https://keiyanishio.itch.io/roll-a-ball)
+Link do Jogo: https://keiyanishio.itch.io/roll-a-ball
 
 ## Objetivo do Jogo:
 
