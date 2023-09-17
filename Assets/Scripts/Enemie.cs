@@ -24,6 +24,7 @@ public class Enemie : MonoBehaviour
 
     private bool CanAttack = true;
 
+    PlayerController lifePoint;
 
 
     // Start is called before the first frame update

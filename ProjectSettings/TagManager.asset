@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PickUp
   - Enemie
+  - Audio
   layers:
   - Default
   - TransparentFX

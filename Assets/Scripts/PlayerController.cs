@@ -25,8 +25,14 @@ public class PlayerController : MonoBehaviour
     private int life;
     private float movementX;
     private float movementY;
+    private int played;
 
-    
+    AudioManagers audioManager;
+
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManagers>();
+    }
 
     public void YouWin()
     {
@@ -46,7 +52,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         count = 0;
         life = 5;
-
+        played = 0;
         SetCountText();
         SetLifeText();
     }
@@ -65,8 +71,10 @@ public class PlayerController : MonoBehaviour
 
         if(count >= 12)
         {
-            
+            audioManager.PlaySFX(audioManager.win);
+            played = 1;
             YouWin();
+
         }
     }
 
@@ -91,6 +99,8 @@ public class PlayerController : MonoBehaviour
         if (transform.position.y < threshold)
         {
             transform.position = new Vector3(0.0f, 0.5f, 0.0f);
+            life -= 1;
+            SetLifeText();
         }
 
         Vector3 movement = new Vector3(movementX, 0.0f, movementY);
@@ -105,6 +115,8 @@ public class PlayerController : MonoBehaviour
             other.gameObject.SetActive(false);
             count = count + 1;
 
+            audioManager.PlaySFX(audioManager.item);
+
             SetCountText();
         }
         
@@ -112,13 +124,22 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage(int Damage)
     {
-        nowHealth -= Damage;
-        life -= 1;
-        SetLifeText();
+        if (played == 0) {
+            nowHealth -= Damage;
+            life -= 1;
+            audioManager.PlaySFX(audioManager.damage);
+            SetLifeText();
+        }
+            
 
         if (nowHealth <= 0)
         {
             GameOver();
+            if (played == 0)
+            {
+                audioManager.PlaySFX(audioManager.lost);
+                played = 1;
+            }
         }
     }
 

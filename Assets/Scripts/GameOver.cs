@@ -7,9 +7,17 @@ using UnityEngine.SceneManagement;
 public class GameOver : MonoBehaviour
 {
     //public Text scoreText;
+    AudioManagers audioManager;
+
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManagers>();
+    }
     public void Setup()
     {
+        
         gameObject.SetActive(true);
+        
         //scoreText.text = "Score: " + score.ToString();
     }
 
