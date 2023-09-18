@@ -55,3 +55,5 @@ O inimigo com a íris amarela ele mais rápido, porém o seu cooldown é mais le
 [Realistic & Fantasy eyes](https://assetstore.unity.com/packages/3d/characters/humanoids/humans/realistic-fantasy-eyes-67861)
 
 [Prison Realm](https://br.pinterest.com/pin/prison-realm-art-in-2023--667658713531431470/)
+
+[Cover Image](https://hi-raethia.tumblr.com/post/671863264942211072/myrklfr-my-take-on-the-prison-realm)
